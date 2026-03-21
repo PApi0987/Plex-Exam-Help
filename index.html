@@ -6,93 +6,104 @@
   <title>Plex Exam Help</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* Global Styles */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Roboto', sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
-    a { text-decoration: none; }
-    section { padding: 60px 20px; }
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body { font-family: 'Roboto', sans-serif; line-height:1.6; background:#f5f5f5; color:#333; }
+    a { text-decoration:none; }
+    section { padding:60px 20px; }
+    h1,h2,h3 { color:#4CAF50; }
 
     /* Header */
-    header { background: linear-gradient(90deg, #4CAF50, #45A049); color: white; text-align: center; padding: 80px 20px; }
-    header h1 { font-size: 3em; margin-bottom: 15px; }
-    header p { font-size: 1.5em; margin-bottom: 30px; }
-    .btn { display: inline-block; padding: 15px 30px; background: white; color: #4CAF50; font-weight: bold; border-radius: 8px; transition: 0.3s; }
-    .btn:hover { background: #4CAF50; color: white; }
+    header { background: linear-gradient(90deg,#4CAF50,#45A049); color:white; text-align:center; padding:80px 20px; }
+    header h1 { font-size:3em; margin-bottom:15px; }
+    header p { font-size:1.5em; margin-bottom:30px; }
+    .btn { display:inline-block; padding:15px 30px; background:white; color:#4CAF50; font-weight:bold; border-radius:8px; transition:0.3s; }
+    .btn:hover { background:#4CAF50; color:white; }
 
     /* Cards */
-    .cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; }
-    .card { background: white; padding: 25px; border-radius: 12px; width: 280px; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.1); transition: 0.3s; }
-    .card:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0,0,0,0.15); }
-    .card h3 { margin-bottom: 15px; color: #4CAF50; }
+    .cards { display:flex; flex-wrap:wrap; justify-content:center; gap:25px; }
+    .card { background:white; padding:25px; border-radius:12px; width:280px; text-align:center; box-shadow:0 8px 20px rgba(0,0,0,0.1); transition:0.3s; }
+    .card:hover { transform: translateY(-5px); box-shadow:0 12px 25px rgba(0,0,0,0.15); }
+    .card h3 { margin-bottom:15px; color:#4CAF50; }
 
     /* Pricing */
-    .pricing .card h3 { color: #FF5722; }
+    .pricing .card h3 { color:#FF5722; }
 
     /* Testimonials */
-    .testimonial { font-style: italic; color: #555; }
+    .testimonial { font-style:italic; color:#555; }
+
+    /* Tips Section */
+    .tips { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
+    .tip { background:#fffbe6; padding:20px; border-radius:10px; width:250px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
+    .tip:hover { background:#fff2cc; }
 
     /* Footer */
-    footer { background: #333; color: white; text-align: center; padding: 30px 20px; }
-    footer a { color: #4CAF50; }
+    footer { background:#333; color:white; text-align:center; padding:30px 20px; }
+    footer a { color:#4CAF50; }
 
     /* Responsive */
     @media(max-width:768px){
-      .cards { flex-direction: column; align-items: center; }
+      .cards, .tips { flex-direction:column; align-items:center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <h1>Plex Exam Help</h1>
-    <p>WAEC, NECO, GCE – Notes, Assignments & Tutoring Made Easy!</p>
-    <a class="btn" href="https://wa.me/2349138529352" target="_blank">Contact on WhatsApp</a>
-  </header>
+<header>
+  <h1>Plex Exam Help</h1>
+  <p>WAEC, NECO, GCE – Notes, Assignments & Tutoring Made Easy!</p>
+  <a class="btn" href="https://wa.me/2349138529352" target="_blank">Contact on WhatsApp</a>
+</header>
 
-  <!-- Services -->
-  <section>
-    <h2 style="text-align:center; margin-bottom:40px;">Our Services</h2>
-    <div class="cards">
-      <div class="card"><h3>Notes</h3><p>Clear notes for all subjects (WAEC, NECO, GCE).</p></div>
-      <div class="card"><h3>Assignments</h3><p>Accurate solutions for all subjects' assignments.</p></div>
-      <div class="card"><h3>Tutoring</h3><p>One-on-one or group sessions for exam prep.</p></div>
-      <div class="card"><h3>Past Questions</h3><p>Solved past questions and exam strategies.</p></div>
-      <div class="card"><h3>Exam Tips</h3><p>Secrets to scoring higher and staying prepared.</p></div>
-    </div>
-  </section>
+<section>
+  <h2 style="text-align:center; margin-bottom:40px;">Our Services</h2>
+  <div class="cards">
+    <div class="card"><h3>📚 Notes</h3><p>Clear notes for all subjects (WAEC, NECO, GCE).</p></div>
+    <div class="card"><h3>📝 Assignments</h3><p>Accurate solutions for all subjects' assignments.</p></div>
+    <div class="card"><h3>👨‍🏫 Tutoring</h3><p>One-on-one or group sessions for exam prep.</p></div>
+    <div class="card"><h3>📄 Past Questions</h3><p>Solved past questions and exam strategies.</p></div>
+    <div class="card"><h3>💡 Exam Tips</h3><p>Secrets to scoring higher and staying prepared.</p></div>
+  </div>
+</section>
 
-  <!-- Pricing -->
-  <section>
-    <h2 style="text-align:center; margin-bottom:40px;">Pricing</h2>
-    <div class="cards pricing">
-      <div class="card"><h3>Notes</h3><p>₦500–₦1000 per subject</p></div>
-      <div class="card"><h3>Assignments</h3><p>₦200–₦500 per question/page</p></div>
-      <div class="card"><h3>Tutoring</h3><p>₦2000–₦5000 per week</p></div>
-      <div class="card"><h3>Past Questions</h3><p>₦1000–₦2000 per subject</p></div>
-    </div>
-  </section>
+<section>
+  <h2 style="text-align:center; margin-bottom:40px;">Pricing</h2>
+  <div class="cards pricing">
+    <div class="card"><h3>Notes</h3><p>₦500–₦1000 per subject</p></div>
+    <div class="card"><h3>Assignments</h3><p>₦200–₦500 per question/page</p></div>
+    <div class="card"><h3>Tutoring</h3><p>₦2000–₦5000 per week</p></div>
+    <div class="card"><h3>Past Questions</h3><p>₦1000–₦2000 per subject</p></div>
+  </div>
+</section>
 
-  <!-- Testimonials -->
-  <section>
-    <h2 style="text-align:center; margin-bottom:40px;">Testimonials</h2>
-    <div class="cards">
-      <div class="card testimonial">"Trusted by classmates – best exam help ever!"</div>
-      <div class="card testimonial">"Notes are clear and easy to understand!"</div>
-      <div class="card testimonial">"Assignments done quickly and correctly!"</div>
-    </div>
-  </section>
+<section>
+  <h2 style="text-align:center; margin-bottom:40px;">WAEC / NECO / GCE Tips</h2>
+  <div class="tips">
+    <div class="tip">📝 Start past questions early – practice makes perfect!</div>
+    <div class="tip">⏰ Time yourself during exams – manage time wisely.</div>
+    <div class="tip">📌 Revise key formulas & definitions every day.</div>
+    <div class="tip">💡 Focus on your weak subjects to improve scores faster.</div>
+    <div class="tip">📚 Make small notes for last-minute revision.</div>
+  </div>
+</section>
 
-  <!-- Contact -->
-  <section>
-    <h2 style="text-align:center; margin-bottom:20px;">Contact Us</h2>
-    <p style="text-align:center; margin-bottom:30px;">Reach out to us via WhatsApp or submit your request online.</p>
-    <a class="btn" href="YOUR_GOOGLE_FORM_LINK_HERE" target="_blank">Submit Your Request</a>
-  </section>
+<section>
+  <h2 style="text-align:center; margin-bottom:20px;">Testimonials</h2>
+  <div class="cards">
+    <div class="card testimonial">"Trusted by classmates – best exam help ever!"</div>
+    <div class="card testimonial">"Notes are clear and easy to understand!"</div>
+    <div class="card testimonial">"Assignments done quickly and correctly!"</div>
+  </div>
+</section>
 
-  <footer>
-    <p>&copy; 2026 Plex Exam Help | Contact on <a href="https://wa.me/2349138529352" target="_blank">WhatsApp</a></p>
-  </footer>
+<section>
+  <h2 style="text-align:center; margin-bottom:20px;">Contact Us</h2>
+  <p style="text-align:center; margin-bottom:30px;">Reach out to us via WhatsApp or submit your request online.</p>
+  <a class="btn" href="YOUR_GOOGLE_FORM_LINK_HERE" target="_blank">Submit Your Request</a>
+</section>
+
+<footer>
+  <p>&copy; 2026 Plex Exam Help | Contact on <a href="https://wa.me/2349138529352" target="_blank">WhatsApp</a></p>
+</footer>
 
 </body>
-  </html>
+</html>
