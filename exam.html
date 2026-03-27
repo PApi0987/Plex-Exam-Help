@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Plex Exam Help - Mock Exam</title>
+</head>
+<body>
+
+<h1>🧠 Mock Exam Mode</h1>
+
+<h2 id="timer">Time: 10:00</h2>
+
+<div id="questionBox"></div>
+
+<button onclick="nextQuestion()">Next</button>
+<button onclick="submitExam()">Submit</button>
+
+<h3 id="score"></h3>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBZu6gLeNWi0AcrZlmVdGWxjiNW9gPRb1U",
+  authDomain: "plexexamhelp.firebaseapp.com",
+  projectId: "plexexamhelp",
+  storageBucket: "plexexamhelp.firebasestorage.app",
+  messagingSenderId: "707616782385",
+  appId: "1:707616782385:web:93aecbcc1ec6dace923d10"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+let questions = [];
+let index = 0;
+let score = 0;
+
+// LOAD QUESTIONS (maths for now)
+async function loadQuestions() {
+  const snap = await getDocs(collection(db, "maths"));
+
+  snap.forEach(doc => {
+    questions.push(doc.data());
+  });
+
+  showQuestion();
+}
+
+function showQuestion() {
+  const q = questions[index];
+
+  document.getElementById("questionBox").innerHTML = `
+    <h3>${q.question}</h3>
+    <input id="answer" placeholder="Your answer">
+  `;
+}
+
+window.nextQuestion = function () {
+  const userAnswer = document.getElementById("answer").value;
+
+  if (userAnswer == questions[index].answer) {
+    score++;
+  }
+
+  index++;
+
+  if (index < questions.length) {
+    showQuestion();
+  } else {
+    submitExam();
+  }
+};
+
+window.submitExam = function () {
+  document.getElementById("score").innerText =
+    "Your Score: " + score + " / " + questions.length;
+};
+
+// TIMER
+let time = 600;
+setInterval(() => {
+  time--;
+  document.getElementById("timer").innerText =
+    "Time: " + Math.floor(time / 60) + ":" + (time % 60);
+
+  if (time <= 0) submitExam();
+}, 1000);
+
+loadQuestions();
+</script>
+
+</body>
+</html>
