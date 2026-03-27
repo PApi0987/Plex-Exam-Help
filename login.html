@@ -1,7 +1,76 @@
-<h1>Login</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Plex Exam Help - Login</title>
+</head>
+<body>
 
-<form>
-  <input type="email" placeholder="Email"><br><br>
-  <input type="password" placeholder="Password"><br><br>
-  <button type="submit">Login</button>
-</form>
+  <h2>Plex Exam Help 🔐</h2>
+
+  <input type="email" id="email" placeholder="Email"><br><br>
+  <input type="password" id="password" placeholder="Password"><br><br>
+
+  <button onclick="signup()">Sign Up</button>
+  <button onclick="login()">Login</button>
+
+  <p id="msg"></p>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+    import { 
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+
+    // 🔥 Your Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyBZu6gLeNwi0AcrZlmVdGWxjiNW9gPRb1U",
+      authDomain: "plexexamhelp.firebaseapp.com",
+      projectId: "plexexamhelp",
+      storageBucket: "plexexamhelp.firebasestorage.app",
+      messagingSenderId: "707616782385",
+      appId: "1:707616782385:web:93aecbcc1ec6dace923d10"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // SIGN UP FUNCTION
+    window.signup = function () {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          document.getElementById("msg").innerText = "Account created ✔️";
+        })
+        .catch((error) => {
+          document.getElementById("msg").innerText = error.message;
+        });
+    };
+
+    // LOGIN FUNCTION
+    window.login = function () {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          document.getElementById("msg").innerText = "Login successful ✔️";
+
+          // redirect to home page
+          setTimeout(() => {
+            window.location.href = "index.html";
+          }, 1000);
+        })
+        .catch((error) => {
+          document.getElementById("msg").innerText = error.message;
+        });
+    };
+  </script>
+
+</body>
+</html>
