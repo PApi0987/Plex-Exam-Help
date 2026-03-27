@@ -1,130 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Plex Exam Help</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin:0; padding:0; }
-    body { font-family: 'Roboto', sans-serif; line-height:1.6; background:#f5f5f5; color:#333; }
-    a { text-decoration:none; }
-    section { padding:60px 20px; }
-    h2,h3 { color:#4CAF50; }
-
-    /* Header */
-    header { 
-      background: linear-gradient(90deg,#4CAF50,#45A049); 
-      color:white; 
-      text-align:center; 
-      padding:80px 20px; 
-    }
-    header h1 { 
-      font-size: 3.5em;       /* bigger and more prominent */
-      font-weight: 900;       /* very bold */
-      margin-bottom: 15px; 
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.5); /* makes it pop */
-    }
-    header p { 
-      font-size:1.7em; 
-      margin-bottom:30px; 
-    }
-    .btn { 
-      display:inline-block; 
-      padding:15px 30px; 
-      background:white; 
-      color:#4CAF50; 
-      font-weight:bold; 
-      border-radius:8px; 
-      transition:0.3s; 
-    }
-    .btn:hover { background:#4CAF50; color:white; }
-
-    /* Cards */
-    .cards { display:flex; flex-wrap:wrap; justify-content:center; gap:25px; }
-    .card { background:white; padding:25px; border-radius:12px; width:280px; text-align:center; box-shadow:0 8px 20px rgba(0,0,0,0.1); transition:0.3s; }
-    .card:hover { transform: translateY(-5px); box-shadow:0 12px 25px rgba(0,0,0,0.15); }
-    .card h3 { margin-bottom:15px; color:#4CAF50; }
-
-    /* Pricing */
-    .pricing .card h3 { color:#FF5722; }
-
-    /* Testimonials */
-    .testimonial { font-style:italic; color:#555; }
-
-    /* Tips Section */
-    .tips { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
-    .tip { background:#fffbe6; padding:20px; border-radius:10px; width:250px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
-    .tip:hover { background:#fff2cc; }
-
-    /* Footer */
-    footer { background:#333; color:white; text-align:center; padding:30px 20px; }
-    footer a { color:#4CAF50; }
-
-    /* Responsive */
-    @media(max-width:768px){
-      .cards, .tips { flex-direction:column; align-items:center; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-<header>
-  <h1>Plex Exam Help</h1>
-  <p>WAEC, NECO, GCE & JAMB – Notes, Assignments & Tutoring Made Easy!</p>
-  <a class="btn" href="https://wa.me/2349138529352" target="_blank">Contact on WhatsApp</a>
-</header>
+  <header>
+    <h1>Plex Exam Help 📚</h1>
+    <p>Your Smart Way to Pass Any Exam</p>
+  </header>
 
-<section>
-  <h2 style="text-align:center; margin-bottom:40px;">Our Services</h2>
-  <div class="cards">
-    <div class="card"><h3>📚 Notes</h3><p>Clear notes for all subjects (WAEC, NECO, GCE & JAMB).</p></div>
-    <div class="card"><h3>📝 Assignments</h3><p>Accurate solutions for all subjects' assignments (WAEC, NECO, GCE & JAMB).</p></div>
-    <div class="card"><h3>👨‍🏫 Tutoring</h3><p>One-on-one or group sessions for exam prep (WAEC, NECO, GCE & JAMB).</p></div>
-    <div class="card"><h3>📄 Past Questions</h3><p>Solved past questions and exam strategies (WAEC, NECO, GCE & JAMB).</p></div>
-    <div class="card"><h3>💡 Exam Tips</h3><p>Secrets to scoring higher and staying prepared (WAEC, NECO, GCE & JAMB).</p></div>
-  </div>
-</section>
+  <section class="buttons">
+    <button onclick="goTo('past.html')">Past Questions</button>
+    <button onclick="goTo('login.html')">Login</button>
+    <button onclick="goTo('tips.html')">Study Tips</button>
+  </section>
 
-<section>
-  <h2 style="text-align:center; margin-bottom:40px;">Pricing</h2>
-  <div class="cards pricing">
-    <div class="card"><h3>Notes</h3><p>₦500–₦1000 per subject</p></div>
-    <div class="card"><h3>Assignments</h3><p>₦200–₦500 per question/page</p></div>
-    <div class="card"><h3>Tutoring</h3><p>₦2000–₦5000 per week</p></div>
-    <div class="card"><h3>Past Questions</h3><p>₦1000–₦2000 per subject</p></div>
-  </div>
-</section>
+  <section class="subjects">
+    <h2>Subjects</h2>
+    <div class="grid">
+      <div class="card">Maths</div>
+      <div class="card">English</div>
+      <div class="card">Biology</div>
+      <div class="card">Physics</div>
+    </div>
+  </section>
 
-<section>
-  <h2 style="text-align:center; margin-bottom:40px;">WAEC / NECO / GCE & JAMB Tips</h2>
-  <div class="tips">
-    <div class="tip">📝 Start past questions early – practice makes perfect!</div>
-    <div class="tip">⏰ Time yourself during exams – manage time wisely.</div>
-    <div class="tip">📌 Revise key formulas & definitions every day.</div>
-    <div class="tip">💡 Focus on your weak subjects to improve scores faster.</div>
-    <div class="tip">📚 Make small notes for last-minute revision.</div>
-  </div>
-</section>
-
-<section>
-  <h2 style="text-align:center; margin-bottom:20px;">Testimonials</h2>
-  <div class="cards">
-    <div class="card testimonial">"Trusted by classmates – best exam help ever!"</div>
-    <div class="card testimonial">"Notes are clear and easy to understand!"</div>
-    <div class="card testimonial">"Assignments done quickly and correctly!"</div>
-  </div>
-</section>
-
-<section>
-  <h2 style="text-align:center; margin-bottom:20px;">Contact Us</h2>
-  <p style="text-align:center; margin-bottom:30px;">Reach out to us via WhatsApp or submit your request online.</p>
-  <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSctkTlxGju5LD1zB-_oBMvyYknWLsKH8mk81OnTFdITLqlohQ/viewform?usp=sharing&ouid=111555695091685078780" target="_blank">Submit Your Request</a>
-</section>
-
-<footer>
-  <p>&copy; 2026 Plex Exam Help | Contact on <a href="https://wa.me/2349138529352" target="_blank">WhatsApp</a></p>
-</footer>
-
+  <script src="script.js"></script>
 </body>
 </html>
