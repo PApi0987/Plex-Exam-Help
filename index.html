@@ -202,3 +202,57 @@ window.goPremium = function(){
 
 </body>
   </html>
+<script src="https://js.paystack.co/v1/inline.js"></script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+import { getFirestore, doc, updateDoc } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBZu6gLeNwi0AcrZlmVdGWxjiNW9gPRb1U",
+  authDomain: "plexexamhelp.firebaseapp.com",
+  projectId: "plexexamhelp",
+  storageBucket: "plexexamhelp.firebasestorage.app",
+  messagingSenderId: "707616782385",
+  appId: "1:707616782385:web:93aecbcc1ec6dace923d10"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// 💳 PAYSTACK PAYMENT
+window.goPremium = function () {
+
+  const user = auth.currentUser;
+
+  if (!user) {
+    alert("Login first!");
+    window.location.href = "login.html";
+    return;
+  }
+
+  let handler = PaystackPop.setup({
+    key: "PASTE_YOUR_PUBLIC_KEY_HERE", // 🔥 replace this
+    email: user.email,
+    amount: 200000, // ₦2000 (Paystack uses kobo)
+
+    callback: async function(response) {
+      // Payment successful
+
+      await updateDoc(doc(db, "users", user.uid), {
+        premium: true
+      });
+
+      alert("Payment successful 🎉 Premium activated!");
+    },
+
+    onClose: function() {
+      alert("Payment cancelled");
+    }
+  });
+
+  handler.openIframe();
+}
+</script>
