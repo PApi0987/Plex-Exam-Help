@@ -27,10 +27,6 @@
       font-size:1.2em;
     }
 
-    .nav-buttons{
-      margin-top:20px;
-    }
-
     .nav-buttons button{
       margin:5px;
       padding:12px 20px;
@@ -59,11 +55,6 @@
       padding:20px;
       border-radius:12px;
       cursor:pointer;
-      transition:0.3s;
-    }
-
-    .card:hover{
-      transform:translateY(-5px);
     }
 
     .services, .pricing{
@@ -92,6 +83,10 @@
       background:#22c55e;
       color:white;
       margin-top:10px;
+      padding:10px;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
     }
   </style>
 </head>
@@ -158,10 +153,13 @@
   <p>© 2026 Plex Exam Help</p>
 </footer>
 
-<!-- 🔥 SCRIPT -->
+<!-- PAYSTACK -->
+<script src="https://js.paystack.co/v1/inline.js"></script>
+
+<!-- FIREBASE + PAYMENT -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
 import { getFirestore, doc, updateDoc } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -182,47 +180,7 @@ window.go = function(page){
   window.location.href = page;
 }
 
-// TEMP premium activation
-window.goPremium = function(){
-  onAuthStateChanged(auth, async (user) => {
-    if(!user){
-      alert("Login first!");
-      window.location.href = "login.html";
-      return;
-    }
-
-    await updateDoc(doc(db,"users",user.uid),{
-      premium:true
-    });
-
-    alert("You are now Premium 🎉");
-  });
-}
-</script>
-
-</body>
-  </html>
-<script src="https://js.paystack.co/v1/inline.js"></script>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
-import { getFirestore, doc, updateDoc } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBZu6gLeNwi0AcrZlmVdGWxjiNW9gPRb1U",
-  authDomain: "plexexamhelp.firebaseapp.com",
-  projectId: "plexexamhelp",
-  storageBucket: "plexexamhelp.firebasestorage.app",
-  messagingSenderId: "707616782385",
-  appId: "1:707616782385:web:93aecbcc1ec6dace923d10"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-// 💳 PAYSTACK PAYMENT
+// 💳 PAYSTACK LIVE PAYMENT
 window.goPremium = function () {
 
   const user = auth.currentUser;
@@ -234,18 +192,21 @@ window.goPremium = function () {
   }
 
   let handler = PaystackPop.setup({
-    key: "pk_live_588038cded65492ec12ee76e69179588e25a27d8", // 🔥 replace this
+    key: "pk_live_588038cded65492ec12ee76e69179588e25a27d8",
     email: user.email,
-    amount: 200000, // ₦2000 (Paystack uses kobo)
+    amount: 200000,
 
     callback: async function(response) {
-      // Payment successful
 
-      await updateDoc(doc(db, "users", user.uid), {
-        premium: true
-      });
+      if(response.reference){
+        await updateDoc(doc(db, "users", user.uid), {
+          premium: true
+        });
 
-      alert("Payment successful 🎉 Premium activated!");
+        alert("Payment successful 🎉 Premium activated!");
+      } else {
+        alert("Payment failed");
+      }
     },
 
     onClose: function() {
@@ -256,3 +217,6 @@ window.goPremium = function () {
   handler.openIframe();
 }
 </script>
+
+</body>
+</html>
