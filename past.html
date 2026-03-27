@@ -1,7 +1,55 @@
-<h1>Past Questions</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Plex Exam Help - Past Questions</title>
+</head>
+<body>
 
-<ul>
-  <li>Maths 2024</li>
-  <li>English 2024</li>
-  <li>Biology 2024</li>
-</ul>
+<h1>Maths Past Questions 📚</h1>
+
+<div id="questions"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+import { 
+  getFirestore, 
+  collection, 
+  getDocs 
+} from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+
+// Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyBZu6gLeNwi0AcrZlmVdGWxjiNW9gPRb1U",
+  authDomain: "plexexamhelp.firebaseapp.com",
+  projectId: "plexexamhelp",
+  storageBucket: "plexexamhelp.firebasestorage.app",
+  messagingSenderId: "707616782385",
+  appId: "1:707616782385:web:93aecbcc1ec6dace923d10"
+};
+
+// Init Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function loadQuestions() {
+  const querySnapshot = await getDocs(collection(db, "maths"));
+
+  const container = document.getElementById("questions");
+
+  querySnapshot.forEach((doc) => {
+    const data = doc.data();
+
+    container.innerHTML += `
+      <div style="padding:10px; border:1px solid #ccc; margin:10px;">
+        <p><b>Q:</b> ${data.question}</p>
+        <p><b>A:</b> ${data.answer}</p>
+      </div>
+    `;
+  });
+}
+
+loadQuestions();
+</script>
+
+</body>
+</html>
