@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Plex Exam Help - Past Questions</title>
+  <title>Plex Exam Help - Subjects</title>
 </head>
 <body>
 
-<h1>Maths Past Questions 📚</h1>
+<h1>📚 Plex Exam Help</h1>
 
+<!-- SUBJECT BUTTONS -->
+<button onclick="loadSubject('maths')">Maths</button>
+<button onclick="loadSubject('english')">English</button>
+<button onclick="loadSubject('biology')">Biology</button>
+
+<hr>
+
+<h2 id="title">Select a subject</h2>
 <div id="questions"></div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-import { 
-  getFirestore, 
-  collection, 
-  getDocs 
-} from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
-// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyBZu6gLeNwi0AcrZlmVdGWxjiNW9gPRb1U",
   authDomain: "plexexamhelp.firebaseapp.com",
@@ -27,28 +30,26 @@ const firebaseConfig = {
   appId: "1:707616782385:web:93aecbcc1ec6dace923d10"
 };
 
-// Init Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-async function loadQuestions() {
-  const querySnapshot = await getDocs(collection(db, "maths"));
+window.loadSubject = async function(subject) {
+  document.getElementById("title").innerText = subject.toUpperCase() + " Questions 📚";
+  document.getElementById("questions").innerHTML = "";
 
-  const container = document.getElementById("questions");
+  const snapshot = await getDocs(collection(db, subject));
 
-  querySnapshot.forEach((doc) => {
+  snapshot.forEach((doc) => {
     const data = doc.data();
 
-    container.innerHTML += `
+    document.getElementById("questions").innerHTML += `
       <div style="padding:10px; border:1px solid #ccc; margin:10px;">
         <p><b>Q:</b> ${data.question}</p>
         <p><b>A:</b> ${data.answer}</p>
       </div>
     `;
   });
-}
-
-loadQuestions();
+};
 </script>
 
 </body>
