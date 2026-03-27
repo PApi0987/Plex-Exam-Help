@@ -1,1 +1,43 @@
+body {
+  font-family: Arial;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background: #f5f7ff;
+}
 
+header {
+  background: #2b59ff;
+  color: white;
+  padding: 30px 10px;
+}
+
+.buttons {
+  margin: 20px;
+}
+
+button {
+  padding: 12px;
+  margin: 5px;
+  border: none;
+  background: #2b59ff;
+  color: white;
+  border-radius: 8px;
+}
+
+.subjects {
+  margin-top: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+}
