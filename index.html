@@ -198,15 +198,19 @@ window.goPremium = function () {
 
     callback: async function(response) {
 
-      if(response.reference){
-        await updateDoc(doc(db, "users", user.uid), {
-          premium: true
-        });
-
-        alert("Payment successful 🎉 Premium activated!");
-      } else {
-        alert("Payment failed");
+      if (!response.reference) {
+        alert("Payment not complete ❌");
+        return;
       }
+
+      // 🔐 Save proof of payment
+      await updateDoc(doc(db, "users", user.uid), {
+        premium: true,
+        paymentRef: response.reference,
+        paidAt: new Date().toISOString()
+      });
+
+      alert("Payment successful 🎉 Premium activated!");
     },
 
     onClose: function() {
