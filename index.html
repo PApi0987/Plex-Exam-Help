@@ -9,7 +9,12 @@
 
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
-    body{font-family:'Roboto',sans-serif;background:#0f172a;color:white;}
+
+    body{
+      font-family:'Roboto',sans-serif;
+      background:#0f172a;
+      color:white;
+    }
 
     header{
       background:linear-gradient(90deg,#2b59ff,#38bdf8);
@@ -36,6 +41,11 @@
       color:#2b59ff;
       font-weight:bold;
       cursor:pointer;
+      transition:0.3s;
+    }
+
+    .nav-buttons button:hover{
+      background:#e2e8f0;
     }
 
     section{
@@ -45,7 +55,7 @@
 
     .grid{
       display:grid;
-      grid-template-columns:repeat(2,1fr);
+      grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
       gap:15px;
       margin-top:20px;
     }
@@ -55,6 +65,12 @@
       padding:20px;
       border-radius:12px;
       cursor:pointer;
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+      background:#334155;
     }
 
     .services, .pricing{
@@ -70,6 +86,11 @@
       padding:20px;
       width:250px;
       border-radius:12px;
+      transition:0.3s;
+    }
+
+    .box:hover{
+      transform:scale(1.05);
     }
 
     footer{
@@ -83,10 +104,16 @@
       background:#22c55e;
       color:white;
       margin-top:10px;
-      padding:10px;
+      padding:12px;
       border:none;
       border-radius:8px;
       cursor:pointer;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .premium-btn:hover{
+      background:#16a34a;
     }
   </style>
 </head>
@@ -176,11 +203,9 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 // Navigation
-window.go = function(page){
-  window.location.href = page;
-}
+window.go = (page) => window.location.href = page;
 
-// 💳 PAYSTACK LIVE PAYMENT
+// 💳 PAYSTACK PAYMENT
 window.goPremium = function () {
 
   const user = auth.currentUser;
@@ -191,26 +216,29 @@ window.goPremium = function () {
     return;
   }
 
-  let handler = PaystackPop.setup({
+  const handler = PaystackPop.setup({
     key: "pk_live_588038cded65492ec12ee76e69179588e25a27d8",
     email: user.email,
-    amount: 200000,
+    amount: 200000, // ₦2000
 
     callback: async function(response) {
 
       if (!response.reference) {
-        alert("Payment not complete ❌");
+        alert("Payment failed ❌");
         return;
       }
 
-      // 🔐 Save proof of payment
-      await updateDoc(doc(db, "users", user.uid), {
-        premium: true,
-        paymentRef: response.reference,
-        paidAt: new Date().toISOString()
-      });
+      try {
+        await updateDoc(doc(db, "users", user.uid), {
+          premium: true,
+          paymentRef: response.reference,
+          paidAt: new Date().toISOString()
+        });
 
-      alert("Payment successful 🎉 Premium activated!");
+        alert("Payment successful 🎉 Premium activated!");
+      } catch (err) {
+        alert("Error saving payment. Contact support.");
+      }
     },
 
     onClose: function() {
@@ -223,4 +251,4 @@ window.goPremium = function () {
 </script>
 
 </body>
-</html>
+        </html>
