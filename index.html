@@ -3,58 +3,99 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Plex Exam Help</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
 body{
 margin:0;
-font-family:Inter;
+font-family:Inter, sans-serif;
 background:linear-gradient(135deg,#f7f8fc,#eef1ff);
 color:#111;
 }
 
+/* NAVBAR */
 nav{
 display:flex;
 justify-content:space-between;
-padding:20px 40px;
 align-items:center;
+padding:18px 28px;
+background:rgba(255,255,255,0.7);
+backdrop-filter:blur(10px);
+position:sticky;
+top:0;
 }
 
 .logo{
 font-weight:700;
-font-size:20px;
+font-size:18px;
 }
 
+/* BUTTONS */
 .btn{
 padding:10px 16px;
 border-radius:12px;
 text-decoration:none;
 font-weight:500;
+transition:0.2s;
+display:inline-block;
 }
 
 .primary{
 background:#4f46e5;
 color:white;
+box-shadow:0 8px 20px rgba(79,70,229,0.25);
 }
 
+.primary:hover{
+transform:translateY(-2px);
+}
+
+.secondary{
+background:white;
+border:1px solid #d1d5db;
+color:#111;
+}
+
+.secondary:hover{
+transform:translateY(-2px);
+}
+
+/* HERO */
 .hero{
 text-align:center;
-padding:80px 20px;
+padding:90px 20px 60px;
 }
 
 .hero h1{
-font-size:42px;
-max-width:700px;
+font-size:44px;
+max-width:750px;
 margin:auto;
+line-height:1.2;
 }
 
 .hero p{
 color:#555;
-margin-top:10px;
+margin-top:12px;
+font-size:16px;
+max-width:600px;
+margin-left:auto;
+margin-right:auto;
 }
 
+/* CTA */
+.cta{
+margin-top:30px;
+display:flex;
+gap:12px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+/* FEATURES */
 .card-row{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
@@ -66,18 +107,41 @@ margin:auto;
 
 .card{
 background:white;
-padding:20px;
+padding:22px;
 border-radius:16px;
-box-shadow:0 10px 30px rgba(0,0,0,0.05);
-transition:0.3s;
+box-shadow:0 10px 30px rgba(0,0,0,0.06);
+transition:0.25s;
+text-align:center;
+font-weight:500;
 }
 
 .card:hover{
-transform:translateY(-5px);
+transform:translateY(-6px);
 }
 
-.cta{
-margin-top:25px;
+/* SMALL ANIMATION */
+.hero h1{
+animation:fadeUp 0.8s ease;
+}
+
+.hero p{
+animation:fadeUp 1s ease;
+}
+
+@keyframes fadeUp{
+from{opacity:0; transform:translateY(15px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+/* MOBILE */
+@media(max-width:600px){
+.hero h1{
+font-size:32px;
+}
+
+nav{
+padding:14px 18px;
+}
 }
 
 </style>
@@ -86,29 +150,49 @@ margin-top:25px;
 
 <body>
 
+<!-- NAV -->
 <nav>
 <div class="logo">Plex Exam Help</div>
+
 <div>
-<a class="btn" href="login.html">Login</a>
+<a class="btn secondary" href="login.html">Login</a>
 <a class="btn primary" href="dashboard.html">Start Learning</a>
 </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-<h1>Study Smarter. Pass Faster. Build Confidence.</h1>
-<p>CBT practice, past questions, and exam simulation built for students.</p>
 
+<h1>Study Smarter. Pass Faster. Build Confidence.</h1>
+
+<p>
+CBT practice, past questions, and smart exam simulation built for students preparing for WAEC, JAMB, NECO and more.
+</p>
+
+<!-- CTA (FIXED HIERARCHY) -->
 <div class="cta">
-<a class="btn primary" href="dashboard.html">Get Started</a>
+
+<a class="btn primary" href="dashboard.html">
+🚀 Start Learning
+</a>
+
+<a class="btn secondary" href="login.html">
+🔐 Login
+</a>
+
 </div>
+
 </section>
 
+<!-- FEATURES -->
 <section class="card-row">
+
 <div class="card">📘 CBT Practice Mode</div>
 <div class="card">⏱ Real Exam Timer</div>
 <div class="card">📊 Performance Tracking</div>
 <div class="card">🏆 Past Questions Bank</div>
+
 </section>
 
 </body>
-</html>
+                                                  </html>
