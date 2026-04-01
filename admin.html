@@ -117,33 +117,14 @@ input, select{
 <p id="msg"></p>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+import { auth } from "./firebase.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBZu6gLeNwi0AcrZlmVdGWxjiNW9gPRb1U",
-  authDomain: "plexexamhelp.firebaseapp.com",
-  projectId: "plexexamhelp",
-  storageBucket: "plexexamhelp.firebasestorage.app",
-  messagingSenderId: "707616782385",
-  appId: "1:707616782385:web:93aecbcc1ec6dace923d10"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-window.addQuestion = async function () {
-  const subject = document.getElementById("subject").value;
-  const question = document.getElementById("question").value;
-  const answer = document.getElementById("answer").value;
-
-  await addDoc(collection(db, subject), {
-    question: question,
-    answer: answer
-  });
-
-  document.getElementById("msg").innerText = "Question added ✔️";
-};
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    window.location.href = "login.html";
+  }
+});
 </script>
 
 </body>
