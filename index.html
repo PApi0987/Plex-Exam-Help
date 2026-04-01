@@ -1,254 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Plex Exam Help</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plex Exam Help</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;}
+<style>
+body{
+margin:0;
+font-family:Inter;
+background:linear-gradient(135deg,#f7f8fc,#eef1ff);
+color:#111;
+}
 
-    body{
-      font-family:'Roboto',sans-serif;
-      background:#0f172a;
-      color:white;
-    }
+nav{
+display:flex;
+justify-content:space-between;
+padding:20px 40px;
+align-items:center;
+}
 
-    header{
-      background:linear-gradient(90deg,#2b59ff,#38bdf8);
-      padding:60px 20px;
-      text-align:center;
-    }
+.logo{
+font-weight:700;
+font-size:20px;
+}
 
-    header h1{
-      font-size:3em;
-      font-weight:900;
-    }
+.btn{
+padding:10px 16px;
+border-radius:12px;
+text-decoration:none;
+font-weight:500;
+}
 
-    header p{
-      margin:15px 0;
-      font-size:1.2em;
-    }
+.primary{
+background:#4f46e5;
+color:white;
+}
 
-    .nav-buttons button{
-      margin:5px;
-      padding:12px 20px;
-      border:none;
-      border-radius:8px;
-      background:white;
-      color:#2b59ff;
-      font-weight:bold;
-      cursor:pointer;
-      transition:0.3s;
-    }
+.hero{
+text-align:center;
+padding:80px 20px;
+}
 
-    .nav-buttons button:hover{
-      background:#e2e8f0;
-    }
+.hero h1{
+font-size:42px;
+max-width:700px;
+margin:auto;
+}
 
-    section{
-      padding:40px 20px;
-      text-align:center;
-    }
+.hero p{
+color:#555;
+margin-top:10px;
+}
 
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-      gap:15px;
-      margin-top:20px;
-    }
+.card-row{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+padding:40px;
+max-width:1000px;
+margin:auto;
+}
 
-    .card{
-      background:#1e293b;
-      padding:20px;
-      border-radius:12px;
-      cursor:pointer;
-      transition:0.3s;
-    }
+.card{
+background:white;
+padding:20px;
+border-radius:16px;
+box-shadow:0 10px 30px rgba(0,0,0,0.05);
+transition:0.3s;
+}
 
-    .card:hover{
-      transform:translateY(-5px);
-      background:#334155;
-    }
+.card:hover{
+transform:translateY(-5px);
+}
 
-    .services, .pricing{
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      gap:20px;
-      margin-top:20px;
-    }
+.cta{
+margin-top:25px;
+}
 
-    .box{
-      background:#1e293b;
-      padding:20px;
-      width:250px;
-      border-radius:12px;
-      transition:0.3s;
-    }
+</style>
 
-    .box:hover{
-      transform:scale(1.05);
-    }
-
-    footer{
-      background:#020617;
-      padding:20px;
-      text-align:center;
-      margin-top:30px;
-    }
-
-    .premium-btn{
-      background:#22c55e;
-      color:white;
-      margin-top:10px;
-      padding:12px;
-      border:none;
-      border-radius:8px;
-      cursor:pointer;
-      font-weight:bold;
-      transition:0.3s;
-    }
-
-    .premium-btn:hover{
-      background:#16a34a;
-    }
-  </style>
 </head>
 
 <body>
 
-<header>
-  <h1>Plex Exam Help 📚</h1>
-  <p>Your Smart Way to Pass WAEC, NECO & JAMB</p>
+<nav>
+<div class="logo">Plex Exam Help</div>
+<div>
+<a class="btn" href="login.html">Login</a>
+<a class="btn primary" href="dashboard.html">Start Learning</a>
+</div>
+</nav>
 
-  <div class="nav-buttons">
-    <button onclick="go('dashboard.html')">Dashboard</button>
-    <button onclick="go('past.html')">Past Questions</button>
-    <button onclick="go('exam.html')">Mock Exam</button>
-    <button onclick="go('login.html')">Login</button>
-  </div>
-</header>
+<section class="hero">
+<h1>Study Smarter. Pass Faster. Build Confidence.</h1>
+<p>CBT practice, past questions, and exam simulation built for students.</p>
 
-<section>
-  <h2>Subjects</h2>
-  <div class="grid">
-    <div class="card" onclick="go('past.html')">📘 Maths</div>
-    <div class="card" onclick="go('past.html')">📗 English</div>
-    <div class="card" onclick="go('past.html')">🧬 Biology</div>
-    <div class="card" onclick="go('past.html')">⚡ Physics</div>
-  </div>
+<div class="cta">
+<a class="btn primary" href="dashboard.html">Get Started</a>
+</div>
 </section>
 
-<section>
-  <h2>Our Services</h2>
-  <div class="services">
-    <div class="box">📚 Notes for all subjects</div>
-    <div class="box">📝 Assignment solutions</div>
-    <div class="box">👨‍🏫 Online tutoring</div>
-    <div class="box">📄 Past questions</div>
-  </div>
+<section class="card-row">
+<div class="card">📘 CBT Practice Mode</div>
+<div class="card">⏱ Real Exam Timer</div>
+<div class="card">📊 Performance Tracking</div>
+<div class="card">🏆 Past Questions Bank</div>
 </section>
-
-<section>
-  <h2>Pricing</h2>
-  <div class="pricing">
-    <div class="box">Notes: ₦500–₦1000</div>
-    <div class="box">Assignments: ₦200–₦500</div>
-    <div class="box">Tutoring: ₦2000–₦5000</div>
-
-    <div class="box">
-      🔥 Premium Access  
-      <br><br>
-      Unlock full exam system  
-      <br><br>
-      <button class="premium-btn" onclick="goPremium()">Go Premium</button>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>Exam Tips</h2>
-  <p>✔ Practice past questions daily</p>
-  <p>✔ Manage your time wisely</p>
-  <p>✔ Focus on weak subjects</p>
-</section>
-
-<footer>
-  <p>© 2026 Plex Exam Help</p>
-</footer>
-
-<!-- PAYSTACK -->
-<script src="https://js.paystack.co/v1/inline.js"></script>
-
-<!-- FIREBASE + PAYMENT -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
-import { getFirestore, doc, updateDoc } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBZu6gLeNwi0AcrZlmVdGWxjiNW9gPRb1U",
-  authDomain: "plexexamhelp.firebaseapp.com",
-  projectId: "plexexamhelp",
-  storageBucket: "plexexamhelp.firebasestorage.app",
-  messagingSenderId: "707616782385",
-  appId: "1:707616782385:web:93aecbcc1ec6dace923d10"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-// Navigation
-window.go = (page) => window.location.href = page;
-
-// 💳 PAYSTACK PAYMENT
-window.goPremium = function () {
-
-  const user = auth.currentUser;
-
-  if (!user) {
-    alert("Login first!");
-    window.location.href = "login.html";
-    return;
-  }
-
-  const handler = PaystackPop.setup({
-    key: "pk_live_588038cded65492ec12ee76e69179588e25a27d8",
-    email: user.email,
-    amount: 200000, // ₦2000
-
-    callback: async function(response) {
-
-      if (!response.reference) {
-        alert("Payment failed ❌");
-        return;
-      }
-
-      try {
-        await updateDoc(doc(db, "users", user.uid), {
-          premium: true,
-          paymentRef: response.reference,
-          paidAt: new Date().toISOString()
-        });
-
-        alert("Payment successful 🎉 Premium activated!");
-      } catch (err) {
-        alert("Error saving payment. Contact support.");
-      }
-    },
-
-    onClose: function() {
-      alert("Payment cancelled");
-    }
-  });
-
-  handler.openIframe();
-}
-</script>
 
 </body>
-        </html>
+</html>
