@@ -6,103 +6,72 @@
 
 <title>Dashboard - Plex Exam Help</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 
 <style>
-
-/* BASE */
 body{
 margin:0;
 font-family:Inter, sans-serif;
 background:#f6f7fb;
-display:flex;
-}
-
-/* SIDEBAR */
-.sidebar{
-width:240px;
-background:#111827;
-color:white;
-height:100vh;
-padding:20px;
-position:fixed;
-left:0;
-top:0;
-}
-
-.sidebar h2{
-font-size:18px;
-margin-bottom:30px;
-}
-
-.sidebar a{
-display:block;
-color:#cbd5e1;
-text-decoration:none;
-padding:10px;
-border-radius:10px;
-margin-bottom:8px;
-transition:0.2s;
-}
-
-.sidebar a:hover{
-background:#1f2937;
-color:white;
-}
-
-/* MAIN */
-.main{
-margin-left:240px;
-padding:20px;
-width:100%;
 }
 
 /* TOP BAR */
 .topbar{
+background:white;
+padding:16px 20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-bottom:20px;
+box-shadow:0 2px 10px rgba(0,0,0,0.05);
+position:sticky;
+top:0;
 }
 
 .topbar h2{
 margin:0;
+font-size:18px;
 }
 
-/* CARDS */
+/* CONTAINER */
+.container{
+padding:20px;
+max-width:1100px;
+margin:auto;
+}
+
+/* GRID */
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 gap:16px;
 margin-top:20px;
 }
 
+/* CARD */
 .card{
 background:white;
 padding:18px;
 border-radius:16px;
-box-shadow:0 10px 25px rgba(0,0,0,0.05);
+box-shadow:0 10px 25px rgba(0,0,0,0.06);
+text-align:center;
 transition:0.2s;
-cursor:pointer;
 }
 
 .card:hover{
 transform:translateY(-5px);
 }
 
-/* SUBJECT CARD */
-.subject{
-font-weight:600;
-margin-bottom:10px;
-}
-
-/* BUTTON */
+/* BUTTONS */
 .btn{
 padding:10px 14px;
 border-radius:12px;
 border:none;
 cursor:pointer;
-font-weight:500;
+font-weight:600;
+text-decoration:none;
+display:inline-block;
+margin-top:10px;
 }
 
 .primary{
@@ -110,30 +79,14 @@ background:#4f46e5;
 color:white;
 }
 
-/* STATS */
-.stats{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:16px;
-margin-top:10px;
+.whatsapp{
+background:#25D366;
+color:white;
 }
 
-.stat{
-background:white;
-padding:18px;
-border-radius:16px;
-box-shadow:0 10px 25px rgba(0,0,0,0.05);
-}
-
-/* AD SLOT */
-.ad{
-margin-top:25px;
-padding:18px;
-border-radius:16px;
-background:#eef2ff;
-text-align:center;
-color:#4f46e5;
-font-weight:500;
+.form{
+background:#f97316;
+color:white;
 }
 
 </style>
@@ -142,88 +95,77 @@ font-weight:500;
 
 <body>
 
-<!-- SIDEBAR -->
-<div class="sidebar">
-<h2>Plex Exam Help</h2>
-
-<a href="dashboard.html">🏠 Dashboard</a>
-<a href="past.html">📚 Past Questions</a>
-<a href="exam.html">🧠 CBT Exam</a>
-<a href="login.html">🚪 Logout</a>
-</div>
-
-<!-- MAIN -->
-<div class="main">
-
+<!-- TOP BAR -->
 <div class="topbar">
-<h2>Learning Dashboard</h2>
+<h2>📚 Plex Exam Help Dashboard</h2>
 </div>
 
-<!-- STATS -->
-<div class="stats">
+<div class="container">
 
-<div class="stat">
-<h3>📊 Progress</h3>
-<p>Track your exam improvement</p>
-</div>
-
-<div class="stat">
-<h3>🎯 Exams Taken</h3>
-<p>View your CBT history</p>
-</div>
-
-<div class="stat">
-<h3>🔥 Streak</h3>
-<p>Stay consistent daily</p>
-</div>
-
-</div>
+<h3>Choose a Subject</h3>
+<p style="color:#666">Start practicing CBT questions</p>
 
 <!-- SUBJECTS -->
-<h3 style="margin-top:25px;">Subjects</h3>
+<div class="grid">
+
+<div class="card">
+📘 Mathematics
+<a class="btn primary" href="exam.html?subject=math">Start</a>
+</div>
+
+<div class="card">
+📗 English
+<a class="btn primary" href="exam.html?subject=english">Start</a>
+</div>
+
+<div class="card">
+📕 Biology
+<a class="btn primary" href="exam.html?subject=biology">Start</a>
+</div>
+
+<div class="card">
+⚛ Physics
+<a class="btn primary" href="exam.html?subject=physics">Start</a>
+</div>
+
+<div class="card">
+🧪 Chemistry
+<a class="btn primary" href="exam.html?subject=chemistry">Start</a>
+</div>
+
+<div class="card">
+📊 Economics
+<a class="btn primary" href="exam.html?subject=economics">Start</a>
+</div>
+
+<div class="card">
+🌍 Geography
+<a class="btn primary" href="exam.html?subject=geography">Start</a>
+</div>
+
+<div class="card">
+📖 Government
+<a class="btn primary" href="exam.html?subject=government">Start</a>
+</div>
+
+</div>
+
+<!-- EXTRA ACTIONS -->
+<h3 style="margin-top:30px;">Need Help?</h3>
 
 <div class="grid">
 
-<div class="card" onclick="startExam('math')">
-<div class="subject">Mathematics</div>
-<button class="btn primary">Start</button>
-</div>
+<a class="btn whatsapp" href="https://wa.me/YOURNUMBER" target="_blank">
+💬 WhatsApp Support
+</a>
 
-<div class="card" onclick="startExam('english')">
-<div class="subject">English</div>
-<button class="btn primary">Start</button>
-</div>
-
-<div class="card" onclick="startExam('biology')">
-<div class="subject">Biology</div>
-<button class="btn primary">Start</button>
-</div>
-
-<div class="card" onclick="startExam('physics')">
-<div class="subject">Physics</div>
-<button class="btn primary">Start</button>
-</div>
-
-<div class="card" onclick="startExam('chemistry')">
-<div class="subject">Chemistry</div>
-<button class="btn primary">Start</button>
-</div>
-
-<div class="card" onclick="startExam('economics')">
-<div class="subject">Economics</div>
-<button class="btn primary">Start</button>
-</div>
+<a class="btn form" href="YOUR_GOOGLE_FORM_LINK" target="_blank">
+📝 Feedback Form
+</a>
 
 </div>
 
-<!-- ADS SLOT (GOOGLE ADS READY) -->
-<div class="ad">
-📢 Ad Space Ready (Google AdSense Placement)
 </div>
-
-</div>
-
-<script src="exam.js"></script>
 
 </body>
 </html>
