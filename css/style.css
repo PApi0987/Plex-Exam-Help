@@ -1,43 +1,129 @@
-body {
-  font-family: Arial;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  background: #f5f7ff;
+:root{
+  --bg:#f6f7fb;
+  --card:#ffffff;
+  --text:#111827;
+  --muted:#6b7280;
+  --primary:#4f46e5;
+  --primary2:#6366f1;
+  --success:#10b981;
+  --danger:#ef4444;
+  --radius:16px;
 }
 
-header {
-  background: #2b59ff;
-  color: white;
-  padding: 30px 10px;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Inter, sans-serif;
 }
 
-.buttons {
-  margin: 20px;
+body{
+  background:var(--bg);
+  color:var(--text);
 }
 
-button {
-  padding: 12px;
-  margin: 5px;
-  border: none;
-  background: #2b59ff;
-  color: white;
-  border-radius: 8px;
+/* NAV */
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 28px;
+  background:white;
+  box-shadow:0 2px 10px rgba(0,0,0,0.05);
 }
 
-.subjects {
-  margin-top: 20px;
+/* BUTTONS */
+.btn{
+  padding:10px 14px;
+  border-radius:12px;
+  text-decoration:none;
+  border:none;
+  cursor:pointer;
+  font-weight:500;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  padding: 20px;
+.primary{
+  background:var(--primary);
+  color:white;
 }
 
-.card {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
+.btn:hover{
+  transform:scale(1.03);
+}
+
+/* CARDS */
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.05);
+  transition:0.2s;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+  padding:20px;
+}
+
+/* AUTH */
+.auth-box{
+  width:320px;
+  margin:80px auto;
+  padding:20px;
+  background:white;
+  border-radius:16px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+input{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  border:1px solid #e5e7eb;
+  border-radius:10px;
+}
+
+/* EXAM MODE */
+.exam-container{
+  max-width:800px;
+  margin:20px auto;
+  background:white;
+  padding:20px;
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.06);
+}
+
+.question-box{
+  margin-top:20px;
+}
+
+.option{
+  padding:12px;
+  border:1px solid #e5e7eb;
+  margin:10px 0;
+  border-radius:12px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.option:hover{
+  background:#f3f4f6;
+}
+
+.option.selected{
+  border-color:var(--primary);
+  background:#eef2ff;
+}
+
+/* TIMER */
+.timer{
+  font-weight:700;
+  color:var(--danger);
 }
