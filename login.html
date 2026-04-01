@@ -1,27 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login</title>
+<title>Login - Plex Exam Help</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="auth-box">
+<div class="container" style="display:flex;justify-content:center;align-items:center;height:100vh;">
 
-<h2>Welcome Back</h2>
-<p style="color:gray">Login to continue learning</p>
+  <div class="card" style="width:340px">
 
-<input type="email" id="email" placeholder="Email">
-<input type="password" id="password" placeholder="Password">
+    <h2 style="text-align:center">Welcome Back</h2>
+    <p style="text-align:center;color:#666">Login to continue learning</p>
 
-<button class="btn primary" onclick="login()">Login</button>
+    <label>Email</label>
+    <input id="email" type="email">
 
-<p style="margin-top:10px">No account? <a href="signup.html">Sign up</a></p>
+    <label>Password</label>
+    <input id="password" type="password">
+
+    <br><br>
+
+    <button class="btn primary" style="width:100%" onclick="login()">Login</button>
+
+    <p style="text-align:center;margin-top:10px;font-size:13px;color:#666">
+      Don’t have an account? Sign up
+    </p>
+
+  </div>
 
 </div>
 
 <script src="auth.js"></script>
-
 </body>
 </html>
