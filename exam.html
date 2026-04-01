@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Plex Exam Help - Mock Exam</title>
+  <title>Mock Exam</title>
 </head>
 <body>
 
 <h1>🧠 Mock Exam Mode</h1>
-
-<h2 id="timer">Time: 10:00</h2>
+<h2 id="timer">10:00</h2>
 
 <div id="questionBox"></div>
 
-<button onclick="nextQuestion()">Next</button>
+<button onclick="next()">Next</button>
 <button onclick="submitExam()">Submit</button>
 
 <h3 id="score"></h3>
@@ -19,50 +18,67 @@
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBZu6gLeNWi0AcrZlmVdGWxjiNW9gPRb1U",
+  apiKey: "AIzaSyBZu6gLeNwi0AcrZlmVdGWxjiNW9gPRb1U",
   authDomain: "plexexamhelp.firebaseapp.com",
   projectId: "plexexamhelp",
-  storageBucket: "plexexamhelp.firebasestorage.app",
-  messagingSenderId: "707616782385",
-  appId: "1:707616782385:web:93aecbcc1ec6dace923d10"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
+
+// 🔐 PROTECT PAGE
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    window.location.href = "login.html";
+  } else {
+    loadQuestions();
+  }
+});
 
 let questions = [];
 let index = 0;
 let score = 0;
+let selectedAnswer = "";
 
-// LOAD QUESTIONS (maths for now)
+// LOAD QUESTIONS
 async function loadQuestions() {
   const snap = await getDocs(collection(db, "maths"));
 
-  snap.forEach(doc => {
-    questions.push(doc.data());
-  });
+  questions = snap.docs.map(doc => doc.data());
 
   showQuestion();
 }
 
+// SHOW QUESTION (CBT STYLE)
 function showQuestion() {
   const q = questions[index];
 
   document.getElementById("questionBox").innerHTML = `
     <h3>${q.question}</h3>
-    <input id="answer" placeholder="Your answer">
+
+    <button onclick="select('${q.A}')">A. ${q.A}</button><br><br>
+    <button onclick="select('${q.B}')">B. ${q.B}</button><br><br>
+    <button onclick="select('${q.C}')">C. ${q.C}</button><br><br>
+    <button onclick="select('${q.D}')">D. ${q.D}</button>
   `;
 }
 
-window.nextQuestion = function () {
-  const userAnswer = document.getElementById("answer").value;
+// SELECT ANSWER
+window.select = function(ans){
+  selectedAnswer = ans;
+}
 
-  if (userAnswer == questions[index].answer) {
+// NEXT
+window.next = function(){
+  if (selectedAnswer === questions[index].answer) {
     score++;
   }
 
+  selectedAnswer = "";
   index++;
 
   if (index < questions.length) {
@@ -72,22 +88,27 @@ window.nextQuestion = function () {
   }
 };
 
-window.submitExam = function () {
+// SUBMIT
+window.submitExam = function(){
   document.getElementById("score").innerText =
-    "Your Score: " + score + " / " + questions.length;
+    `Score: ${score}/${questions.length}`;
 };
 
-// TIMER
+// TIMER (PRO FORMAT)
 let time = 600;
+
 setInterval(() => {
   time--;
+
+  const min = Math.floor(time / 60);
+  const sec = time % 60;
+
   document.getElementById("timer").innerText =
-    "Time: " + Math.floor(time / 60) + ":" + (time % 60);
+    `${min}:${sec < 10 ? "0"+sec : sec}`;
 
   if (time <= 0) submitExam();
-}, 1000);
 
-loadQuestions();
+}, 1000);
 </script>
 
 </body>
