@@ -1,115 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mock Exam</title>
+<meta charset="UTF-8">
+<title>CBT Exam Mode</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<h1>🧠 Mock Exam Mode</h1>
-<h2 id="timer">10:00</h2>
+<div class="nav">
+  <h3 id="subjectTitle">Exam Mode</h3>
+  <div class="timer">⏱ <span id="time">00:00</span></div>
+</div>
 
-<div id="questionBox"></div>
+<div class="exam-container">
 
-<button onclick="next()">Next</button>
-<button onclick="submitExam()">Submit</button>
+  <div class="question-box">
+    <h2 id="question">Loading question...</h2>
+    <div id="options"></div>
+  </div>
 
-<h3 id="score"></h3>
+  <div class="grid">
+    <button class="btn" onclick="prevQ()">Previous</button>
+    <button class="btn primary" onclick="nextQ()">Next</button>
+    <button class="btn" onclick="submitExam()">Submit</button>
+  </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+</div>
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBZu6gLeNwi0AcrZlmVdGWxjiNW9gPRb1U",
-  authDomain: "plexexamhelp.firebaseapp.com",
-  projectId: "plexexamhelp",
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
-
-// 🔐 PROTECT PAGE
-onAuthStateChanged(auth, (user) => {
-  if (!user) {
-    window.location.href = "login.html";
-  } else {
-    loadQuestions();
-  }
-});
-
-let questions = [];
-let index = 0;
-let score = 0;
-let selectedAnswer = "";
-
-// LOAD QUESTIONS
-async function loadQuestions() {
-  const snap = await getDocs(collection(db, "maths"));
-
-  questions = snap.docs.map(doc => doc.data());
-
-  showQuestion();
-}
-
-// SHOW QUESTION (CBT STYLE)
-function showQuestion() {
-  const q = questions[index];
-
-  document.getElementById("questionBox").innerHTML = `
-    <h3>${q.question}</h3>
-
-    <button onclick="select('${q.A}')">A. ${q.A}</button><br><br>
-    <button onclick="select('${q.B}')">B. ${q.B}</button><br><br>
-    <button onclick="select('${q.C}')">C. ${q.C}</button><br><br>
-    <button onclick="select('${q.D}')">D. ${q.D}</button>
-  `;
-}
-
-// SELECT ANSWER
-window.select = function(ans){
-  selectedAnswer = ans;
-}
-
-// NEXT
-window.next = function(){
-  if (selectedAnswer === questions[index].answer) {
-    score++;
-  }
-
-  selectedAnswer = "";
-  index++;
-
-  if (index < questions.length) {
-    showQuestion();
-  } else {
-    submitExam();
-  }
-};
-
-// SUBMIT
-window.submitExam = function(){
-  document.getElementById("score").innerText =
-    `Score: ${score}/${questions.length}`;
-};
-
-// TIMER (PRO FORMAT)
-let time = 600;
-
-setInterval(() => {
-  time--;
-
-  const min = Math.floor(time / 60);
-  const sec = time % 60;
-
-  document.getElementById("timer").innerText =
-    `${min}:${sec < 10 ? "0"+sec : sec}`;
-
-  if (time <= 0) submitExam();
-
-}, 1000);
-</script>
+<script src="exam.js"></script>
 
 </body>
 </html>
