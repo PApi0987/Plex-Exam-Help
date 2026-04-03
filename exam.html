@@ -140,5 +140,46 @@ onAuthStateChanged(auth, (user) => {
 });
 </script>
 
+  <script>
+const API_KEY = "AIzaSyCNeLD4IQhy2xvOi4mfpbU2XQ4Tq-1LG8s";
+
+async function askAI() {
+  const question = document.getElementById("question").innerText;
+
+  document.getElementById("aiResponse").innerText = "Thinking... 🤖";
+
+  try {
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        contents: [
+          {
+            parts: [
+              {
+                text: `Explain this exam question in a simple way for a student:\n${question}`
+              }
+            ]
+          }
+        ]
+      })
+    });
+
+    const data = await res.json();
+
+    const reply =
+      data.candidates?.[0]?.content?.parts?.[0]?.text ||
+      "No response";
+
+    document.getElementById("aiResponse").innerText = reply;
+
+  } catch (err) {
+    document.getElementById("aiResponse").innerText = "Error loading AI";
+  }
+}
+      </script>
+  
 </body>
 </html>
