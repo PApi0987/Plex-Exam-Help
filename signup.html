@@ -2,86 +2,52 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sign Up</title>
-
+<title>Sign Up - Plex Exam Help</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
-<style>
-body{
-  margin:0;
-  font-family:Inter;
-  background:#f6f7fb;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-}
-
-.card{
-  width:320px;
-  background:white;
-  padding:20px;
-  border-radius:16px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.06);
-}
-
-input{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  border-radius:10px;
-  border:1px solid #ddd;
-}
-
-button{
-  width:100%;
-  padding:12px;
-  margin-top:15px;
-  background:#4f46e5;
-  color:white;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-}
-</style>
 </head>
 
-<body>
+<body style="font-family:Inter;background:#f7f8fc;margin:0;">
 
-<div class="card">
-<h2>Create Account</h2>
+<div style="display:flex;justify-content:center;align-items:center;height:100vh;">
 
-<input id="email" type="email" placeholder="Email">
-<input id="password" type="password" placeholder="Password">
+  <div style="background:white;padding:25px;border-radius:14px;width:340px;box-shadow:0 10px 30px rgba(0,0,0,0.06);">
 
-<button onclick="signup()">Sign Up</button>
+    <h2 style="text-align:center;">Create Account</h2>
 
-<p style="text-align:center;margin-top:10px;">
-Already have account? <a href="login.html">Login</a>
-</p>
+    <input id="email" type="email" placeholder="Email" style="width:100%;padding:12px;margin-top:10px;border-radius:10px;border:1px solid #ddd;">
+    
+    <input id="password" type="password" placeholder="Password" style="width:100%;padding:12px;margin-top:10px;border-radius:10px;border:1px solid #ddd;">
+
+    <button onclick="signup()" style="width:100%;padding:12px;margin-top:15px;border:none;border-radius:10px;background:#4f46e5;color:white;">
+      Sign Up
+    </button>
+
+    <p style="text-align:center;margin-top:10px;">
+      Already have account? 
+      <a href="login.html">Login</a>
+    </p>
+
+  </div>
+
 </div>
 
 <script type="module">
-import { auth, db } from "./firebase.js";
+import { auth } from "./firebase.js";
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 window.signup = async function () {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  if (!email || !password) {
+    alert("Fill all fields");
+    return;
+  }
 
   try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-
-    await setDoc(doc(db, "users", userCredential.user.uid), {
-      email: email,
-      score: 0,
-      createdAt: new Date()
-    });
-
-    alert("Account created successfully!");
+    await createUserWithEmailAndPassword(auth, email, password);
+    alert("Account created 🎉");
     window.location.href = "dashboard.html";
-
   } catch (error) {
     alert(error.message);
   }
@@ -89,4 +55,4 @@ window.signup = async function () {
 </script>
 
 </body>
-  </html>
+</html>
